@@ -1,0 +1,32 @@
+{
+  "name": "pixxio",
+  "version": "2.0.1",
+  "description": "The official WordPress plugin for pixx.io. Bring Digital Asset Management to your WordPress sites by importing assets into your media library.",
+  "author": "48DESIGN GmbH",
+  "license": "GPL-2.0-or-later",
+  "keywords": [],
+  "homepage": "https://www.pixx.io",
+  "repository": "https://github.com/pixx-io/wordpress-plugin",
+  "bugs": "https://github.com/pixx-io/wordpress-plugin/issues",
+  "dependencies": {
+    "@wordpress/scripts": "^26.1.0",
+    "adm-zip": "^0.5.10"
+  },
+  "scripts": {
+    "lint:pkg-json": "wp-scripts lint-pkg-json ./",
+    "lint:js": "wp-scripts lint-js ./{admin,public}/**/js/*.js",
+    "lint:css": "wp-scripts lint-style ./{admin,public}/**/css/*.css",
+    "lint:md:docs": "wp-scripts lint-md-docs",
+    "lint": "npm run lint:pkg-json && npm run lint:js && npm run lint:css && node src/lint-post.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "plugin-zip": "wp-scripts plugin-zip --dir=pixxio",
+    "pack": "node src/dist-pre.js && npm run plugin-zip && node src/dist-post.js",
+    "pack-major": "npm version major --no-git-tag-version && npm run pack",
+    "pack-minor": "npm version minor --no-git-tag-version && npm run pack",
+    "pack-patch": "npm version patch --no-git-tag-version && npm run pack",
+    "dist": "npm run lint && npm run pack",
+    "dist-major": "npm run lint && npm version major --no-git-tag-version && npm run pack",
+    "dist-minor": "npm run lint && npm version minor --no-git-tag-version && npm run pack",
+    "dist-patch": "npm run lint && npm version patch --no-git-tag-version && npm run pack"
+  }
+}
